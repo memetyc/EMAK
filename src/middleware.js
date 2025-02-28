@@ -6,8 +6,11 @@ export default withAuth({
     authorized: async ({ req, token }) => {
       // Admin sayfalarına erişim kontrolü
       if (req.nextUrl.pathname.startsWith('/admin')) {
-        // Token yoksa veya role admin değilse reddet       
+        // Token yoksa veya role admin değilse reddet      
+        console.log(token);
+        
         if (!token || token.role !== 'admin') {
+
           return false;
         }
       }

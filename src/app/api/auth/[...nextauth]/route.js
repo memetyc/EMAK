@@ -36,6 +36,10 @@ export const authOptions = {
           id: user.id.toString(),
           name: user.name,
           email: user.email,
+          role: user.role,
+          isBanned: user.isBanned,
+          image: user.image,
+          
         };
       }
     })
@@ -43,6 +47,9 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        console.log(user);
+        console.log(token);
+        
         token.role = user.role;
         token.sub = user.id;
         token.isBanned = user.isBanned;
@@ -61,7 +68,6 @@ export const authOptions = {
   pages: {
     signIn: '/girisyap',
     signOut: '/cikis',
-    error: '/auth/error',
   },
   session: {
     strategy: "jwt",

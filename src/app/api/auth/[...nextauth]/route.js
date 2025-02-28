@@ -46,10 +46,7 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        console.log(user);
-        console.log(token);
-        
+      if (user) {        
         token.role = user.role;
         token.sub = user.id;
         token.isBanned = user.isBanned;

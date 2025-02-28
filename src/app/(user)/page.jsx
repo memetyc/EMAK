@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import prisma from "@/lib/prisma";
+import { prisma } from '@/lib/db/prisma';
+
 export default async function Home() {
   const events = await prisma.event.findMany({
     take: 4, // Son 4 etkinlik

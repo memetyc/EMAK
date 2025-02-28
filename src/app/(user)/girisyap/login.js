@@ -17,18 +17,13 @@ export default function Login() {
     const callbackUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/';
 
     try {
-      const result = await signIn('credentials', {
+     await signIn('credentials', {
         email: formData.email,
         password: formData.password,
         redirect: callbackUrl,
       });
-
-      if (result.ok) {
-        toast.success("Giriş başarılı");
-        router.push('/'); // Ana sayfaya yönlendir
-      } else {
-        toast.error(result.error || "Giriş başarısız");
-      }
+    
+      
     } catch (error) {
       console.error("Giriş hatası:", error);
       toast.error("Giriş yapılırken bir hata oluştu");

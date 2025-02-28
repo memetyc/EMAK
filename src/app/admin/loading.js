@@ -13,10 +13,10 @@ function Loading() {
     <table className="table table-zebra">
       <thead>
         <tr>
-          <th>Görsel</th>
-          <th>Başlık</th>
-          <th>Tarih</th>
-          <th>İşlemler</th>
+          <th className='skeleton w-32 '></th>
+          <th className='skeleton w-32 '></th>
+          <th className='skeleton w-32 '></th>
+          <th className='skeleton w-32 '></th>
         </tr>
       </thead>
       <tbody>

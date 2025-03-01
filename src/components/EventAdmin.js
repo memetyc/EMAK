@@ -19,9 +19,10 @@ export default function EventAdmin({event}) {
   const [eventPost, setEventPost] = useState({
     title: event?.title || '',
     description: event?.description || '',
-    eventDate: event?.eventDate || new Date(),
+    eventDate: event?.eventDate ? new Date(event.eventDate).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16),
   });
 
+  console.log(event)
   const router = useRouter()
   const editor = useEditor({
     extensions: [

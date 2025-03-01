@@ -9,9 +9,9 @@ import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { useParams } from 'next/navigation'
+
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+
 
 
 export default function BlogAdmin({blog}) {

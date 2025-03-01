@@ -32,7 +32,7 @@ export default async function EventDetail({ params }) {
         </div>
 
         <div className="card bg-base-200 p-6 mb-8">
-          <div className="whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: event.description }} />
+          <div className="prose prose-lg max-w-none dark:prose-invert break-words" dangerouslySetInnerHTML={{ __html: event.description }} />
         </div>
 
         <div className="flex justify-between items-center mt-8 pt-4 border-t">

@@ -24,7 +24,7 @@ export default async function BlogPost({ params }) {
 
 
   return (
-    <article className="container mx-auto px-4 py-8 min-h-[65vh]">
+    <article className="container mx-auto px-4 py-8 min-h-[65vh] mt-20">
       <div className="max-w-4xl mx-auto">
         {/* Başlık Bölümü */}
         <header className="text-center mb-8">

@@ -19,7 +19,7 @@ export default async function EventDetail({ params }) {
   const event = await getEvent(params.slug);
   
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mt-20">
       <article className="prose prose-lg max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-4">{event.title}</h1>
         

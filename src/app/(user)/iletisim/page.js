@@ -1,8 +1,7 @@
-import Image from "next/image";
 
 export default function Contact() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mt-20">
       <div className="max-w-4xl mx-auto">
         {/* Başlık */}
         <div className="text-center mb-12">

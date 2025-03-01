@@ -12,7 +12,7 @@ export default async function Blog() {
   });
 
   return (
-    <div className="container mx-auto px-4 py-8 min-h-[65vh]">
+    <div className="container mx-auto px-4 py-8 min-h-[65vh] mt-20">
       {/* Başlık */}
       <div className="text-center mb-16">
         <h1 className="text-5xl font-bold mb-4">Blog</h1>

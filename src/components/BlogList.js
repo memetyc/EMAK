@@ -18,14 +18,17 @@ export default function BlogList({ posts }) {
             key={post.id}
             className="card bg-base-200 hover:shadow-lg transition-shadow"
           >
-            <figure className="relative h-48">
-              <Image
+            {
+              post.image && (
+                <figure className="relative h-48">
+                  <Image
                 src={post.image}
                 alt={post.title}
                 fill
                 className="object-cover"
-              />
+              />  
             </figure>
+            ) }
             <div className="card-body">
               <h2 className="card-title">{post.title}</h2>
               <p className="text-gray-400">{post.excerpt}</p>

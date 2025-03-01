@@ -15,8 +15,8 @@ import { usePathname } from 'next/navigation';
 
 
 export default function BlogAdmin({blog}) {
-  const pathname = usePathname();
-  console.log(pathname,'pathname');
+
+
 
   const [isLoading, setIsLoading] = useState(false);
   const [blogPost, setBlogPost] = useState({
@@ -61,12 +61,6 @@ export default function BlogAdmin({blog}) {
       toast.error('İçerik boş olamaz');
       return;
     }
-
-    if (!blogPost.image && !blog?.image) {
-      toast.error('Görsel seçilmedi');
-      return;
-    }
-
  
 
 

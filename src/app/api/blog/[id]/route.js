@@ -7,7 +7,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 export async function DELETE(req, { params }) {
     try {
         const { id } =await params; 
-        console.log(id);
+ 
         
         const blog = await prisma.blog.findUnique({
             where: {

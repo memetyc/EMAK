@@ -1,5 +1,6 @@
 import React from 'react'
 import BlogAdmin from '@/components/BlogAdmin'
+import { prisma } from '@/lib/db/prisma'
 async function page({params}) {
   const {id} = await params
   

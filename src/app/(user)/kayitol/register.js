@@ -8,7 +8,7 @@ export default function Register() {
   const router = useRouter();
   async function getUser(){
     const session = await getSession();
-    console.log(session);
+   
   }
   getUser();
   const [formData, setFormData] = useState({
@@ -35,7 +35,7 @@ export default function Register() {
         toast.success("Kullanıcı oluşturuldu");
         router.push('/girisyap');
       } else {
-        console.log(data.message);
+   
         
         toast.error(data.message);
       }

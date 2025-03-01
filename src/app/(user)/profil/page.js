@@ -19,7 +19,7 @@ async function getUserBlogs(userId) {
 export default async function ProfilePage() {
   const { user } = await getServerSession(authOptions);
   const blogs = await getUserBlogs(user.id);
-  console.log(user);
+ 
   
   return (
     <div className="container mx-auto p-4 min-h-[90dvh]">

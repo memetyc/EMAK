@@ -12,7 +12,7 @@ export default async function BlogPost({ params }) {
     }
   });
 
-  console.log(post)
+
   if (!post) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
@@ -24,7 +24,7 @@ export default async function BlogPost({ params }) {
 
 
   return (
-    <article className="container mx-auto px-4 py-8">
+    <article className="container mx-auto px-4 py-8 min-h-[65vh]">
       <div className="max-w-4xl mx-auto">
         {/* Başlık Bölümü */}
         <header className="text-center mb-8">
@@ -38,14 +38,19 @@ export default async function BlogPost({ params }) {
         </header>
 
         {/* Ana Görsel */}
-        <div className="relative h-[60vh] mb-12 rounded-xl overflow-hidden">
-          <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            className="object-cover"
-            priority
-          />
+        <div className="">
+          {
+            post.image && (
+              <Image
+                src={post.image}
+                alt={post.title}
+                width={1000}
+                height={1000}
+                className="w-full h-full object-cover rounded-xl"
+                priority
+              />
+            ) 
+          }
         </div>
 
         {/* İçerik */}

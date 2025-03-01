@@ -9,6 +9,7 @@ import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from '@tiptap/extension-link';
 
 
 
@@ -20,9 +21,7 @@ export default function EventAdmin({event}) {
     description: event?.description || '',
     eventDate: event?.eventDate || new Date(),
   });
-  function formatDateForInput(date) {
-    return new Date(date).toISOString().slice(0, 16);
-  }
+
   const router = useRouter()
   const editor = useEditor({
     extensions: [
@@ -34,6 +33,9 @@ export default function EventAdmin({event}) {
         paragraph: false,
         text: false
       }),
+      Link.configure({
+        defaultProtocol: 'https',
+      })
     ],
     content: eventPost.description,
     editorProps: {
@@ -168,7 +170,7 @@ export default function EventAdmin({event}) {
         <div>
           <label className="block text-sm font-medium mb-2">Tarih</label>
           <div className="flex items-center gap-4">
-              <input type="date" value={eventPost.eventDate} onChange={(e) => setEventPost(prev => ({ ...prev, eventDate: e.target.value }))} className="input input-bordered w-full" />
+              <input type="datetime-local" value={eventPost.eventDate} onChange={(e) => setEventPost(prev => ({ ...prev, eventDate: e.target.value }))} className="input input-bordered w-full" />
           </div>
         </div>
 

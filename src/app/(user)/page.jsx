@@ -4,9 +4,14 @@ import { prisma } from '@/lib/db/prisma';
 
 export default async function Home() {
   const events = await prisma.event.findMany({
-    take: 4, // Son 4 etkinlik
+    where: {
+      eventDate: {
+        gte: new Date() 
+      }
+    },
+   
     orderBy: {
-      eventDate: 'desc'
+      eventDate: 'asc'
     }
   });
 
@@ -73,7 +78,7 @@ export default async function Home() {
                       __html: (event.description) 
                     }}
                   />
-                  <button className="btn btn-primary btn-sm mt-4">Detaylar</button>
+                  <Link href={`/event/${event.slug}`} className="btn btn-primary btn-sm mt-4">Detaylar</Link>
                 </div>
               </div>
             ))}
@@ -130,12 +135,23 @@ export default async function Home() {
               <div key={blog.id} 
                    className="group cursor-pointer">
                 <div className="relative h-64 mb-4 overflow-hidden rounded-xl">
-                  <Image
-                    src={blog.image}
-                    alt={blog.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                  {
+                    blog.image ? (
+                      <Image
+                        src={blog.image}
+                        alt={blog.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    ) : (
+                      <Image
+                        src={'/HeroImage.jpeg'}
+                        alt={blog.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    )
+                  }
                 </div>
                 <div className="space-y-2">
                   <p className="text-sm text-base-content/70">{blog.date}</p>

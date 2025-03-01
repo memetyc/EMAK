@@ -6,7 +6,7 @@ export async function POST(request) {
     try {
      
         const {name, email, password} = await request.json();
-        console.log("register",name);
+
         const existingUser = await prisma.user.findUnique({
             where: { email }
         });

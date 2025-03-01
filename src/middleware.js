@@ -7,7 +7,7 @@ export default withAuth({
       // Admin sayfalarına erişim kontrolü
       if (req.nextUrl.pathname.startsWith('/admin')) {
         // Token yoksa veya role admin değilse reddet      
-        console.log(token);
+
         
         if (!token || token.role !== 'admin') {
 

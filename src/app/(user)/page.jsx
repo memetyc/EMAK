@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { prisma } from '@/lib/db/prisma';
 
+
+
 export default async function Home() {
   const events = await prisma.event.findMany({
     where: {
@@ -9,13 +11,15 @@ export default async function Home() {
         gte: new Date() 
       }
     },
-   
     orderBy: {
       eventDate: 'asc'
     }
   });
 
   const blogs = await prisma.blog.findMany({
+    where: {
+      isPublished: true
+    },
     take: 3,
     orderBy: {
       createdAt: 'desc'

@@ -55,7 +55,7 @@ export default async function BlogPost({ params }) {
 
         {/* İçerik */}
         <div 
-          className="prose prose-lg max-w-none  break-words"
+          className="prose prose-lg max-w-none mt-10  break-words"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 

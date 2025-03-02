@@ -57,7 +57,7 @@ export default async function Home() {
             <h2 className="text-4xl font-bold">Yaklaşan Etkinlikler</h2>
             <button className="btn btn-outline">Tüm Etkinlikler</button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event) => (
               <div key={event.id} className="card bg-base-200 hover:shadow-xl transition-all duration-300">
                 <div className="card-body">

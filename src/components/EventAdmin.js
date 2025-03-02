@@ -11,7 +11,13 @@ import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from '@tiptap/extension-link';
 
-
+function formatToLocalDateTime(date) {
+  const d = new Date(date);
+  // Tarihi Istanbul saat dilimine göre formatla
+  return new Date(d.getTime() - (d.getTimezoneOffset() * 60000))
+    .toISOString()
+    .slice(0, 16);
+}
 
 export default function EventAdmin({event}) {
   
@@ -19,10 +25,16 @@ export default function EventAdmin({event}) {
   const [eventPost, setEventPost] = useState({
     title: event?.title || '',
     description: event?.description || '',
-    eventDate: event?.eventDate ? new Date(event.eventDate).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16),
+    location: event?.location || '',
+    eventDate: event?.eventDate 
+      ? formatToLocalDateTime(event.eventDate)
+      : formatToLocalDateTime(new Date()),
+    eventEndDate: event?.eventEndDate
+      ? formatToLocalDateTime(event.eventEndDate)
+      : formatToLocalDateTime(new Date())
   });
 
-  console.log(event)
+
   const router = useRouter()
   const editor = useEditor({
     extensions: [
@@ -67,34 +79,44 @@ export default function EventAdmin({event}) {
       return;
     }
 
- 
-
-
     try {
-   
       setIsLoading(true);
+      
+      // Tarihi UTC'ye çevir
+      const submissionData = {
+        ...eventPost,
+        eventDate: new Date(eventPost.eventDate).toISOString(),
+        eventEndDate: new Date(eventPost.eventEndDate).toISOString()
+      };
+
+ 
       const response = event?.id ? await fetch(`/api/event/${event.id}`, {
         method: 'PATCH',
-        body: JSON.stringify(eventPost),
+        body: JSON.stringify(submissionData),
       }) : await fetch('/api/event', {
         method: 'POST',
-        body: JSON.stringify(eventPost),
+        body: JSON.stringify(submissionData),
       });
 
-      const res = await response.json()
+      const res = await response.json();
       if (res.success) {
         toast.success(res.message);
-        setEventPost({ title: '', description: '', eventDate: new Date() });
+        setEventPost({ 
+          title: '', 
+          description: '', 
+          eventDate: formatToLocalDateTime(new Date()), 
+          location: '',
+          eventEndDate: formatToLocalDateTime(new Date())
+        });
         editor.commands.setContent('');
         setIsLoading(false);
-        router.refresh()
-        
+        router.refresh();
       } else {
         toast.error(res.message);
         setIsLoading(false);
       }
     } catch (error) {
-      console.error('Hata:', error);
+      console.error( error);
       toast.error('Bir hata oluştu');
       setIsLoading(false);
     }
@@ -167,11 +189,36 @@ export default function EventAdmin({event}) {
           </div>
         </div>
 
-
+        <div>
+          <label className="block text-sm font-medium mb-2">Konum</label>
+          <input type="text" value={eventPost.location} onChange={(e) => setEventPost(prev => ({ ...prev, location: e.target.value }))} className="input input-bordered w-full" />
+        </div>
         <div>
           <label className="block text-sm font-medium mb-2">Tarih</label>
           <div className="flex items-center gap-4">
-              <input type="datetime-local" value={eventPost.eventDate} onChange={(e) => setEventPost(prev => ({ ...prev, eventDate: e.target.value }))} className="input input-bordered w-full" />
+            <input 
+              type="datetime-local" 
+              value={eventPost.eventDate}
+              onChange={(e) => setEventPost(prev => ({ 
+                ...prev, 
+                eventDate: e.target.value 
+              }))} 
+              className="input input-bordered w-full" 
+            />
+          </div>
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Bitiş Tarihi</label>
+          <div className="flex items-center gap-4">
+            <input 
+              type="datetime-local" 
+              value={eventPost.eventEndDate}
+              onChange={(e) => setEventPost(prev => ({ 
+                ...prev, 
+                eventEndDate: e.target.value 
+              }))} 
+              className="input input-bordered w-full" 
+            />
           </div>
         </div>
 

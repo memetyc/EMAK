@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db/prisma";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
+import AddGoogleEvent from "@/components/AddGoogleEvent";
 
 async function getEvent(slug) {
   const event = await prisma.event.findUnique({
@@ -17,19 +18,46 @@ async function getEvent(slug) {
 
 export default async function EventDetail({ params }) {
   const event = await getEvent(params.slug);
+  const eventDate = new Date(event.eventDate);
   
   return (
     <div className="container mx-auto px-4 py-8 mt-20">
       <article className="prose prose-lg max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">{event.title}</h1>
-        
-        <div className="flex items-center gap-4 text-gray-500 mb-8">
-          <time dateTime={event.eventDate}>
-            {format(new Date(event.eventDate), "d MMMM yyyy", { locale: tr })}
-          </time>
-          <span>•</span>
-          <span>{format(new Date(event.eventDate), "HH:mm", { locale: tr })}</span>
+        {/* Tarih ve Saat Kartı */}
+        <div className="card bg-primary text-primary-content p-6 mb-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              {/* Gün ve Ay */}
+              <div className="text-center">
+                <div className="text-5xl font-bold">
+                  {format(eventDate, "d")}
+                </div>
+                <div className="text-xl">
+                  {format(eventDate, "MMMM", { locale: tr })}
+                </div>
+              </div>
+              
+              {/* Gün Adı ve Saat */}
+              <div className="border-l pl-8">
+                <div className="text-2xl font-semibold">
+                  {format(eventDate, "EEEE", { locale: tr })}
+                </div>
+                <div className="text-xl">
+                  {format(eventDate, "HH:mm")}
+                </div>
+              </div>
+            </div>
+            
+            {/* Kalan Süre Badge */}
+            <div className="badge badge-secondary badge-lg p-4">
+              {eventDate > new Date() 
+                ? `${Math.ceil((eventDate - new Date()) / (1000 * 60 * 60 * 24))} gün kaldı` 
+                : 'Etkinlik sona erdi'}
+            </div>
+          </div>
         </div>
+
+        <h1 className="text-4xl font-bold mb-8">{event.title}</h1>
 
         <div className="card bg-base-200 p-6 mb-8">
           <div className="prose prose-lg max-w-none break-words" dangerouslySetInnerHTML={{ __html: event.description }} />
@@ -39,9 +67,9 @@ export default async function EventDetail({ params }) {
           <div className="text-sm text-gray-500">
             Oluşturulma: {format(new Date(event.createdAt), "d MMMM yyyy", { locale: tr })}
           </div>
-          <button className="btn btn-primary">
-            Katıl
-          </button>
+          <div className="flex gap-4">
+            <AddGoogleEvent event={event} />
+          </div>
         </div>
       </article>
     </div>

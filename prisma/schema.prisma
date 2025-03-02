@@ -68,6 +68,8 @@ model Event {
   title String @unique
   description String
   eventDate DateTime
+  eventEndDate DateTime?
   slug String @unique
+  location String?
   createdAt DateTime @default(now())
 }

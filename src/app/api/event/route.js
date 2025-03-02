@@ -22,6 +22,8 @@ export async function POST(req) {
         title: body.title,
         description: body.description,
         eventDate: eventDate,
+        eventEndDate: body.eventEndDate,
+        location: body.location,
         slug: slugify(body.title, { lower: true, strict: true }),
       }
     });

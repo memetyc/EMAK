@@ -16,6 +16,6 @@ export default {
     require('@tailwindcss/typography'),
   ],
   daisyui: {
-    themes: [ "forest"],
+    themes: [ "halloween"],
   },
 };

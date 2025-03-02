@@ -31,10 +31,12 @@ export async function PATCH(req, { params }) {
     try {
       const {id} = await params;
       const data = await req.json();
+      console.log(data);
+      
       const title = data.title;
       const description = data.description;
-
-      
+      const location = data.location;
+      const eventEndDate = new Date(data.eventEndDate);
       const eventDate = new Date(data.eventDate);
 
  
@@ -46,6 +48,8 @@ export async function PATCH(req, { params }) {
           title,
           description,
           eventDate,
+          location,
+          eventEndDate,
         },
       });
   

@@ -30,14 +30,15 @@ function stripHtml(html) {
 }
 export async function generateMetadata({ params }) {
   const post = await getPost(params.slug);
-  const plainDescription = stripHtml(post.description);
+  const plainDescription = stripHtml(post.content);
   if (!post) {
     return {
       title: 'Yazı Bulunamadı',
       description: 'Aradığınız blog yazısı bulunamadı.'
     }
-  }
+  }  
 
+  
   return {
     title: `EMAK - ${post.title}`,
     description: plainDescription || `${post.title} - ${post.author.name}`,

@@ -44,7 +44,8 @@ export async function generateMetadata({ params }) {
   }
 
   const plainDescription = stripHtml(event.description);
-
+ 
+  
   return {
     title: `EMAK - ${event.title}`,
     description: plainDescription || event.title,

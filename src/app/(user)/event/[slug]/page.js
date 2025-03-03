@@ -30,20 +30,20 @@ export default async function EventDetail({ params }) {
               {/* Gün ve Ay */}
               <div className="text-center">
                 <div className="text-5xl font-bold">
-                  {format(eventDate, "d")}
+                  {format(eventDate, "d", { timeZone: 'Europe/Istanbul' })}
                 </div>
                 <div className="text-xl">
-                  {format(eventDate, "MMMM", { locale: tr })}
+                  {format(eventDate, "MMMM", { locale: tr, timeZone: 'Europe/Istanbul' })}
                 </div>
               </div>
               
               {/* Gün Adı ve Saat */}
               <div className="border-l pl-8">
                 <div className="text-2xl font-semibold">
-                  {format(eventDate, "EEEE", { locale: tr })}
+                  {format(eventDate, "EEEE", { locale: tr, timeZone: 'Europe/Istanbul' })}
                 </div>
                 <div className="text-xl">
-                  {format(eventDate, "HH:mm")}
+                  {format(eventDate, "HH:mm", { timeZone: 'Europe/Istanbul' } )}
                 </div>
               </div>
             </div>

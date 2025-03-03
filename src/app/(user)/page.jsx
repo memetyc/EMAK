@@ -64,10 +64,16 @@ export default async function Home() {
                   <div className="flex items-center gap-4 mb-4">
                     <div className="bg-primary text-primary-content rounded-lg p-3 text-center min-w-20">
                       <div className="text-2xl font-bold">
-                        {new Date(event.eventDate).getDate()}
+                        {new Date(event.eventDate).toLocaleString('tr-TR', { 
+                          day: 'numeric',
+                          timeZone: 'Europe/Istanbul'
+                        })}
                       </div>
                       <div className="text-sm">
-                        {new Date(event.eventDate).toLocaleString('tr-TR', { month: 'short' })}
+                        {new Date(event.eventDate).toLocaleString('tr-TR', { 
+                          month: 'short',
+                          timeZone: 'Europe/Istanbul'
+                        })}
                       </div>
                     </div>
                     <div>
@@ -75,7 +81,8 @@ export default async function Home() {
                         {new Date(event.eventDate).toLocaleString('tr-TR', { 
                           hour: '2-digit', 
                           minute: '2-digit',
-                          weekday: 'long'
+                          weekday: 'long',
+                          timeZone: 'Europe/Istanbul'
                         })}
                       </div>
                     </div>

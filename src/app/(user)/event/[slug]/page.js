@@ -16,10 +16,65 @@ async function getEvent(slug) {
   return event;
 }
 
+
+function stripHtml(html) {
+  if (!html) return '';
+  // Önce basit HTML etiketlerini kaldır
+  let text = html.replace(/<[^>]*>/g, ' ');
+  // Fazla boşlukları temizle
+  text = text.replace(/\s+/g, ' ').trim();
+  // HTML entities'i decode et
+  text = text.replace(/&amp;/g, '&')
+             .replace(/&lt;/g, '<')
+             .replace(/&gt;/g, '>')
+             .replace(/&quot;/g, '"')
+             .replace(/&#039;/g, "'")
+             .replace(/&nbsp;/g, ' ');
+  return text;
+}
+
+export async function generateMetadata({ params }) {
+  const event = await getEvent(params.slug);
+
+  if (!event) {
+    return {
+      title: 'Etkinlik Bulunamadı',
+      description: 'Aradığınız etkinlik bulunamadı.'
+    }
+  }
+
+  const plainDescription = stripHtml(event.description);
+
+  return {
+    title: `EMAK - ${event.title}`,
+    description: plainDescription || event.title,
+    openGraph: {
+      title: event.title,
+      description: plainDescription || event.title,
+      type: 'article',
+      publishedTime: event.createdAt.toISOString(),
+      authors: 'EMAK',
+      images: [
+        {
+          url: '/HeroImage.jpeg',
+          width: 1200,
+          height: 630,
+          alt: event.title
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: event.title,
+      description: plainDescription || event.title,
+      images: '/HeroImage.jpeg',
+    },
+  }
+}
+
 export default async function EventDetail({ params }) {
   const event = await getEvent(params.slug);
   const eventDate = new Date(event.eventDate);
-  
   return (
     <div className="container mx-auto px-4 py-8 mt-20">
       <article className="prose prose-lg max-w-4xl mx-auto">

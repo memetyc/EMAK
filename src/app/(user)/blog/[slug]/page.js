@@ -1,17 +1,65 @@
 import Image from "next/image";
 import { prisma } from "@/lib/db/prisma";
 
-
-export default async function BlogPost({ params }) {
+async function getPost(slug) {
   const post = await prisma.blog.findUnique({
     where: {
-      slug: (await params).slug
+      slug: slug
     },
     include: {
       author: true
     }
   });
 
+  return post;
+}
+function stripHtml(html) {
+  if (!html) return '';
+  // Önce basit HTML etiketlerini kaldır
+  let text = html.replace(/<[^>]*>/g, ' ');
+  // Fazla boşlukları temizle
+  text = text.replace(/\s+/g, ' ').trim();
+  // HTML entities'i decode et
+  text = text.replace(/&amp;/g, '&')
+             .replace(/&lt;/g, '<')
+             .replace(/&gt;/g, '>')
+             .replace(/&quot;/g, '"')
+             .replace(/&#039;/g, "'")
+             .replace(/&nbsp;/g, ' ');
+  return text;
+}
+export async function generateMetadata({ params }) {
+  const post = await getPost(params.slug);
+  const plainDescription = stripHtml(post.description);
+  if (!post) {
+    return {
+      title: 'Yazı Bulunamadı',
+      description: 'Aradığınız blog yazısı bulunamadı.'
+    }
+  }
+
+  return {
+    title: `EMAK - ${post.title}`,
+    description: plainDescription || `${post.title} - ${post.author.name}`,
+    openGraph: {
+      title: post.title,
+      description: plainDescription || `${post.title} - ${post.author.name}`,
+      type: 'article',
+      publishedTime: post.createdAt.toISOString(),
+      authors: [post.author.name],
+      images: post.image ? [post.image] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: plainDescription || `${post.title} - ${post.author.name}`,
+      images: post.image ? [post.image] : [],
+    },
+  }
+}
+
+export default async function BlogPost({ params }) {
+  const post = await getPost(params.slug);
 
   if (!post) {
     return (
@@ -21,7 +69,6 @@ export default async function BlogPost({ params }) {
       </div>
     );
   }
-
 
   return (
     <article className="container mx-auto px-4 py-8 min-h-[65vh] mt-20">

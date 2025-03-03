@@ -74,7 +74,7 @@ export default async function ProfilePage() {
                         <div className="card-actions justify-end mt-4">
                             {
                                 blog.isPublished && (
-                                    <Link href={`/blog/${blog.id}`} className="btn btn-sm btn-ghost">
+                                    <Link href={`/blog/${blog.slug}`} className="btn btn-sm btn-ghost">
                                         Görüntüle
                                     </Link>
                                 ) 

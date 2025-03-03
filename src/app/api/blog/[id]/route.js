@@ -134,6 +134,7 @@ export async function PATCH(req, { params }) {
           title,
           content,
           image: imageUrl,
+          isPublished: false,
         },
       });
   

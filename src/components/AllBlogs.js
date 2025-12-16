@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -83,6 +83,7 @@ export default function AllBlogs({ posts }) {
                         src={post.image}
                         alt={post.title}
                         fill
+                
                         className="object-cover rounded"
                       />
                     </div>

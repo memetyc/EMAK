@@ -56,6 +56,7 @@ export default async function Home() {
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-4xl font-bold">Yaklaşan Etkinlikler</h2>
           </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event) => (
               <div key={event.id} className="card bg-base-200 hover:shadow-xl transition-all duration-300">

@@ -57,7 +57,7 @@ export async function generateMetadata({ params }) {
       authors: 'EMAK',
       images: [
         {
-          url: '/HeroImage.jpeg',
+          url: '/logobeyaz.svg',
           width: 1200,
           height: 630,
           alt: event.title
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: event.title,
       description: plainDescription || event.title,
-      images: '/HeroImage.jpeg',
+      images: '/logobeyaz.svg',
     },
   }
 }

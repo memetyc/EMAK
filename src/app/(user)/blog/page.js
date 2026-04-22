@@ -10,7 +10,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/HeroImage.jpeg',
+        url: '/logo.svg',
         width: 1200,
         height: 630,
         alt: 'EMAK Blog'

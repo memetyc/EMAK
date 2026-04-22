@@ -37,7 +37,7 @@ export default function AdminNavbar() {
       
         <ul className="menu bg-base-200 min-h-full w-80 p-4 ">
           {/* Sidebar content here */}
-          <Image src={'/logo.png'} width={200} height={100} className='w-full object-cover my-10' alt='Logo'/>
+          <Image src={'/logobeyaz.svg'} width={200} height={100} className='w-full object-cover my-10' alt='Logo'/>
           <li><Link href={'/admin/blog'}>Blog yönetimi</Link></li>
           <li><Link href={'/admin/user'}>Kullanıcı yönetimi</Link></li>
           <li><Link href={'/admin/event'}>Etkinlik yönetimi</Link></li>

@@ -6,8 +6,8 @@ export default function Footer() {
       <div className="grid grid-flow-col gap-4">
         <Link href="/" className="link link-hover">Ana Sayfa</Link>
         <Link href="/blog" className="link link-hover">Blog</Link>
-        <Link href="/hakkimizda" className="link link-hover">Hakkımızda</Link>
-        <Link href="/iletisim" className="link link-hover">İletişim</Link>
+        {/* <Link href="/hakkimizda" className="link link-hover">Hakkımızda</Link>
+        <Link href="/iletisim" className="link link-hover">İletişim</Link> */}
       </div>
       <div>
         <div className="grid grid-flow-col gap-4">
@@ -20,9 +20,9 @@ export default function Footer() {
         </div>
       </div>
       <div>
-        <p>Copyright © {new Date().getFullYear()} - EMAK | Ege Üniversitesi Mağara Araştırma Topluluğu</p>
+        <p>Copyright © {new Date().getFullYear()} - MağaraLog öyleli bir şeyler</p>
         <p className='text-xs'>
-        <Link href="https://www.helloworldyazilim.com" target="_blank" rel="noopener noreferrer" className='underline' >Hw Yazılım</Link> tarafından geliştirildi.
+        <Link href="https://www.instagram.com/memetinseyi" target="_blank" rel="noopener noreferrer" className='underline' >Mehmet Çalışkan</Link> tarafından geliştirildi.
         </p>
       </div>
     </footer>

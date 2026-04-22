@@ -32,7 +32,7 @@ export const metadata = {
     description: 'Ege Üniversitesi Mağara Araştırma Topluluğu (EMAK), yeraltı dünyasının keşifçileri olarak mağara keşifleri, mağaracılık eğitimleri ve doğa sporları konusunda faaliyet göstermektedir.',
     images: [
       {
-        url: '/HeroImage.jpeg',
+        url: '/logo.svg',
         width: 1200,
         height: 630,
         alt: 'EMAK - Ege Üniversitesi Mağara Araştırma Topluluğu'
@@ -43,7 +43,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'EMAK - Ege Üniversitesi Mağara Araştırma Topluluğu',
     description: 'Ege Üniversitesi Mağara Araştırma Topluluğu (EMAK), yeraltı dünyasının keşifçileri olarak mağara keşifleri, mağaracılık eğitimleri ve doğa sporları konusunda faaliyet göstermektedir.',
-    images: ['/HeroImage.jpeg']
+    images: ['/logo.jpeg']
   },
   viewport: {
     width: 'device-width',

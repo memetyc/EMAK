@@ -51,10 +51,10 @@ export default function Navbar() {
           </div>
           <Link href="/" className="mx-2 flex-1 px-2 font-sigmar">
             <Image
-              src="/logo.png"
+              src="/logobeyaz.svg"
               alt="Logo"
-              width={100}
-              height={40}
+              width={50}
+              height={20}
               priority
             />
           </Link>
@@ -62,8 +62,8 @@ export default function Navbar() {
             <ul className="menu menu-horizontal text">
               <li><Link href="/">Ana Sayfa</Link></li>
               <li><Link href="/blog">Blog</Link></li>
-              <li><Link href="/hakkimizda">Hakkımızda</Link></li>
-              <li><Link href="/iletisim">İletişim</Link></li>
+              {/* <li><Link href="/hakkimizda">Hakkımızda</Link></li> */}
+              {/* <li><Link href="/iletisim">İletişim</Link></li> */}
 
             </ul>
           </div>
@@ -90,8 +90,8 @@ export default function Navbar() {
         <ul className="menu bg-base-200 min-h-full w-80 p-4">
           <li><Link href="/">Ana Sayfa</Link></li>
           <li><Link href="/blog">Blog</Link></li>
-          <li><Link href="/hakkimizda">Hakkımızda</Link></li>
-          <li><Link href="/iletisim">İletişim</Link></li>
+          {/* <li><Link href="/hakkimizda">Hakkımızda</Link></li> */}
+          {/* <li><Link href="/iletisim">İletişim</Link></li> */}
         </ul>
       </div>
     </div>
